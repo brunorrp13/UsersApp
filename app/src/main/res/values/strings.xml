@@ -5,6 +5,8 @@
     <string name="next">Next</string>
 
     <string name="users">Users</string>
+    <string name="url">url</string>
+    <string name="empty_text_field_msg">Please, enter the server address</string>
     <string name="first_name">First Name: </string>
     <string name="last_name">Last Name:</string>
     <string name="server_address">Enter the server address</string>

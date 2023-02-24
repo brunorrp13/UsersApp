@@ -30,11 +30,11 @@ class HomeFragment : Fragment() {
     private fun handleButtonClick() {
         homeFragmentBinding.buttonFirst.setOnClickListener {
             if (homeFragmentBinding.endpointTextInput.text.isNullOrEmpty()) {
-                Toast.makeText(activity, "Please, insert the url", Toast.LENGTH_LONG)
+                Toast.makeText(activity, resources.getString(R.string.empty_text_field_msg), Toast.LENGTH_LONG)
                     .show()
             } else {
                 val endpoint = Bundle().apply {
-                    putString("url", homeFragmentBinding.endpointTextInput.text.toString())
+                    putString(resources.getString(R.string.url), homeFragmentBinding.endpointTextInput.text.toString())
                 }
                 findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, endpoint)
             }
