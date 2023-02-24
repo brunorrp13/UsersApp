@@ -1,5 +1,6 @@
 package com.example.usersapp.presentation.di
 
+import com.example.usersapp.BuildConfig
 import com.example.usersapp.data.api.UsersAPIService
 import dagger.Module
 import dagger.Provides
@@ -17,6 +18,7 @@ class NetModule {
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BuildConfig.BASE_URL)
             .build()
     }
 

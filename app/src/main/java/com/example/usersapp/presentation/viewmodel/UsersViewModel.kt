@@ -8,7 +8,7 @@ import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.usersapp.R
-import com.example.usersapp.data.model.APIResponse
+import com.example.usersapp.data.model.User
 import com.example.usersapp.data.util.Resource
 import com.example.usersapp.domain.usecase.GetUsersUseCase
 import kotlinx.coroutines.Dispatchers
@@ -20,14 +20,14 @@ class UsersViewModel(
     private val app: Application,
     private val getUsersUseCase: GetUsersUseCase
 ) : AndroidViewModel(app) {
-    var uiState = MutableStateFlow<Resource<APIResponse>>(Resource.Loading())
+    var uiState = MutableStateFlow<Resource<List<User>>>(Resource.Loading())
         private set
 
-    fun getUsers() = viewModelScope.launch(Dispatchers.IO) {
+    fun getUsers(url: String) = viewModelScope.launch(Dispatchers.IO) {
         uiState.emit(Resource.Loading())
         try {
             if (isNetworkAvailable(app)) {
-                val apiResult = getUsersUseCase.execute()
+                val apiResult = getUsersUseCase.execute(url.trim()+app.getString(R.string.endpoint))
                 uiState.emit(apiResult)
             } else {
                 uiState.emit(Resource.Error(app.getString(R.string.internet_is_not_available)))

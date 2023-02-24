@@ -12,7 +12,7 @@ import javax.inject.Singleton
 class AdapterModule {
     @Singleton
     @Provides
-    fun provideNewsAdapter(): UsersAdapter {
+    fun provideUsersAdapter(): UsersAdapter {
         return UsersAdapter()
     }
 }

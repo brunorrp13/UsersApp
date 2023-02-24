@@ -13,10 +13,10 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/UsersFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/UsersFragment"
         android:name="com.example.usersapp.presentation.ui.UsersFragment"
         android:label="@string/users_list_screen"
         tools:layout="@layout/users_fragment">
@@ -24,5 +24,9 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <argument
+            android:name="url"
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
 </navigation>

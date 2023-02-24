@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.usersapp.R
 import com.example.usersapp.data.util.Resource
 import com.example.usersapp.databinding.UsersFragmentBinding
@@ -32,8 +34,21 @@ class UsersFragment : Fragment() {
         usersFragmentBinding = UsersFragmentBinding.bind(view)
         viewModel = (activity as MainActivity).viewModel
         usersAdapter = (activity as MainActivity).usersAdapter
+        val args: UsersFragmentArgs by navArgs()
+        getUsers(args.url)
+        initRecyclerView()
         observeViewModel()
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun initRecyclerView() {
+        usersFragmentBinding.usersRv.apply {
+            adapter = usersAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
+    private fun getUsers(url: String) {
+        viewModel.getUsers(url)
     }
 
     private fun observeViewModel() {
@@ -42,9 +57,10 @@ class UsersFragment : Fragment() {
                 when (response) {
                     is Resource.Success -> {
                         hideProgressBar()
-                        response.data?.let {
-                            Log.i("MYTAG", "came here ${it.users.toList().size}")
-                            usersAdapter.differ.submitList(it.users.toList())
+                        showUsersTitle()
+                        response.data?.let { users ->
+                            val finalList = users.distinctBy { it.id }
+                            usersAdapter.differ.submitList(finalList)
                         }
                     }
                     is Resource.Error -> {
@@ -60,6 +76,10 @@ class UsersFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun showUsersTitle() {
+        usersFragmentBinding.usersTitle.visibility = View.VISIBLE
     }
 
     private fun showProgressBar() {

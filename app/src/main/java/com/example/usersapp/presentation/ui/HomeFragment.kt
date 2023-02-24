@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.usersapp.R
@@ -23,8 +24,20 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeFragmentBinding = HomeFragmentBinding.bind(view)
+        handleButtonClick()
+    }
+
+    private fun handleButtonClick() {
         homeFragmentBinding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            if (homeFragmentBinding.endpointTextInput.text.isNullOrEmpty()) {
+                Toast.makeText(activity, "Please, insert the url", Toast.LENGTH_LONG)
+                    .show()
+            } else {
+                val endpoint = Bundle().apply {
+                    putString("url", homeFragmentBinding.endpointTextInput.text.toString())
+                }
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, endpoint)
+            }
         }
     }
 }

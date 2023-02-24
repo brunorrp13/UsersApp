@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.usersapp.data.model.User
 import com.example.usersapp.databinding.UserListItemBinding
+import com.squareup.picasso.Picasso
 
-class UsersAdapter : RecyclerView.Adapter<UsersAdapter.NewsViewHolder>() {
+class UsersAdapter : RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
 
     private val callback = object : DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
@@ -23,13 +23,13 @@ class UsersAdapter : RecyclerView.Adapter<UsersAdapter.NewsViewHolder>() {
 
     val differ = AsyncListDiffer(this, callback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val binding = UserListItemBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
-        return NewsViewHolder(binding)
+        return UsersViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         val article = differ.currentList[position]
         holder.bind(article)
     }
@@ -38,17 +38,14 @@ class UsersAdapter : RecyclerView.Adapter<UsersAdapter.NewsViewHolder>() {
         return differ.currentList.size
     }
 
-    inner class NewsViewHolder(
+    inner class UsersViewHolder(
         private val binding: UserListItemBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
-            binding.userName.text = user.username
             binding.firstName.text = user.profile.firstName
             binding.lastName.text = user.profile.lastName
-            binding.userId.text = user.id
-
-            Glide.with(binding.userAvatar.context).load(user.avatar).into(binding.userAvatar)
+            Picasso.get().load(user.avatar).into(binding.userAvatar)
         }
     }
 }
