@@ -52,7 +52,6 @@ class UsersViewModel(
                 else -> false
             }
         } else {
-            //for the old version of android sdk we use follow code
             val networkInfo = connectivityManager.activeNetworkInfo
             return networkInfo != null && networkInfo.isConnectedOrConnecting
         }

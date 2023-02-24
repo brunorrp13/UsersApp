@@ -10,9 +10,15 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.usersapp.R
 import com.example.usersapp.databinding.ActivityMainBinding
+import com.example.usersapp.presentation.adapter.UsersAdapter
+import com.example.usersapp.presentation.viewmodel.UsersViewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var usersAdapter: UsersAdapter
+    lateinit var viewModel: UsersViewModel
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 

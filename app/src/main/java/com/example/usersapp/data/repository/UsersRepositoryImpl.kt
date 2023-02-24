@@ -1,7 +1,7 @@
 package com.example.usersapp.data.repository
 
-import com.example.usersapp.data.repository.dataSource.UsersRemoteDataSource
 import com.example.usersapp.data.model.APIResponse
+import com.example.usersapp.data.repository.dataSource.UsersRemoteDataSource
 import com.example.usersapp.data.util.Resource
 import com.example.usersapp.domain.repository.UsersRepository
 import retrofit2.Response
