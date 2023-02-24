@@ -7,25 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.usersapp.R
-import com.example.usersapp.databinding.FragmentFirstBinding
+import com.example.usersapp.databinding.HomeFragmentBinding
 
-class FirstFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = HomeFragmentBinding.inflate(inflater, container, false)
         return binding.root
 
-    }
-
-    override fun onResume() {
-        (requireActivity() as MainActivity).supportActionBar?.title = resources.getString(R.string.server_address_screen);
-        super.onResume()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

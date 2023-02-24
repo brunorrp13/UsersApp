@@ -5,13 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.example.usersapp.R
-import com.example.usersapp.databinding.FragmentSecondBinding
+import com.example.usersapp.databinding.UsersFragmentBinding
 
-class SecondFragment : Fragment() {
+class UsersFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: UsersFragmentBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,22 +17,13 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = UsersFragmentBinding.inflate(inflater, container, false)
         return binding.root
 
     }
 
-    override fun onResume() {
-        (requireActivity() as MainActivity).supportActionBar?.title = resources.getString(R.string.users_list_screen);
-        super.onResume()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        }
     }
 
     override fun onDestroyView() {
