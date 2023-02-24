@@ -7,3 +7,7 @@ The architectural pattern chosen for the project was MVVM due to the clear separ
 
 ## Dependency Injection
 The Google library Dagger Hilt was used for dependency injection because of its flexibility and practical way of building the dependencies as Singletons and having a readable structure with modules.
+
+## Important
+Both of the avatar urls for the https://6185257423a2fe0017fff3d5.mockapi.io/ address server are broken (https://cdn.fakercloud.com/avatars/dicesales_128.jpg and https://cdn.fakercloud.com/avatars/klefue_128.jpg as seen below)
+<img width="1067" alt="image" src="https://user-images.githubusercontent.com/69281497/221305492-292e8ce9-7eb6-43d5-89c6-4c5ac51d514f.png">
