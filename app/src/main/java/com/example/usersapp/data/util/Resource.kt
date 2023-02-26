@@ -1,10 +1,9 @@
 package com.example.usersapp.data.util
 
-sealed class Resource<T>(
-    val data: T? = null,
-    val message: String? = null
-) {
-    class Success<T>(data: T) : Resource<T>(data)
-    class Loading<T>(data: T? = null) : Resource<T>(data)
-    class Error<T>(message: String, data: T? = null) : Resource<T>(data, message)
+import com.example.usersapp.data.model.User
+
+sealed class Resource {
+    class Success(val data: List<User>) : Resource()
+    class Error(val message: String) : Resource()
+    object Loading : Resource()
 }

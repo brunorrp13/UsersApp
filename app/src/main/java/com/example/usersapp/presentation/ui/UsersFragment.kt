@@ -58,14 +58,14 @@ class UsersFragment : Fragment() {
                     is Resource.Success -> {
                         hideProgressBar()
                         showUsersTitle()
-                        response.data?.let { users ->
+                        response.data.let { users ->
                             val finalList = users.distinctBy { it.id }
                             usersAdapter.differ.submitList(finalList)
                         }
                     }
                     is Resource.Error -> {
                         hideProgressBar()
-                        response.message?.let {
+                        response.message.let {
                             Toast.makeText(activity, "An error occurred : $it", Toast.LENGTH_LONG)
                                 .show()
                         }

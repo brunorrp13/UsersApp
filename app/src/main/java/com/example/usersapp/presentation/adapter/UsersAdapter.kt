@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.usersapp.R
 import com.example.usersapp.data.model.User
 import com.example.usersapp.databinding.UserListItemBinding
 import com.squareup.picasso.Picasso
@@ -45,7 +46,8 @@ class UsersAdapter : RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
         fun bind(user: User) {
             binding.firstName.text = user.profile.firstName
             binding.lastName.text = user.profile.lastName
-            Picasso.get().load(user.avatar).into(binding.userAvatar)
+            Picasso.get().load(user.avatar)
+                .error(R.mipmap.no_image).into(binding.userAvatar)
         }
     }
 }

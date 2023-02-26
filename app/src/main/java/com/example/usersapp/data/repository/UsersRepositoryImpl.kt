@@ -9,11 +9,11 @@ import retrofit2.Response
 class UsersRepositoryImpl(
     private val usersRemoteDataSource: UsersRemoteDataSource,
 ) : UsersRepository {
-    override suspend fun getUsers(url: String): Resource<List<User>> {
+    override suspend fun getUsers(url: String): Resource {
         return responseToResource(usersRemoteDataSource.getUsers(url))
     }
 
-    private fun responseToResource(response: Response<List<User>>): Resource<List<User>> {
+    private fun responseToResource(response: Response<List<User>>): Resource {
         if (response.isSuccessful) {
             response.body()?.let { result ->
                 return Resource.Success(result)
